@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { AuthProvider } from "./hoc/with-auth";
+import RequireAuth from "./hoc/require-auth";
+import Layout from "./layout"
+import HomePage from "./pages/home-page";
+import PostsListPage from "./pages/posts-list-page";
+import SinglePostPage from "./pages/single-post-page";
+import UserPage from "./pages/user-page";
+import SecretPage from "./pages/secret-page"
+import ProfilePage from "./pages/profile-page";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <AuthProvider>
+
+          <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path="/posts" element={<PostsListPage />} />
+                <Route path="/posts/:id" element={<SinglePostPage />} />
+                <Route path="/users/:id" element={<UserPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/secret-page" element={
+                  <RequireAuth>
+                    <SecretPage />
+                  </RequireAuth>
+                }/>
+              </Route>
+              <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,38 @@
+.posts-container {
+    padding: 25px 0
+}
+
+.post-card {
+    box-shadow: 0px 0px 18px #ccc;
+    margin: 0 0 20px;
+    padding: 20px;
+}
+
+.post-card__header {
+    margin: 0 0 20px;
+}
+
+.post-card__title {
+    font-size: 24px;
+    margin: 0 0 5px;
+}
+
+.post-card__author {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.post-card__authoc-icon {
+    font-size: 20px;
+}
+
+.post-card__author-name {
+    margin-left: 10px;
+}
+
+.post-card__author a:hover {
+    text-decoration: underline;
+}
+
